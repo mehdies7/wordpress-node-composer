@@ -1,0 +1,4 @@
+.env
+.DS_Store
+app/*
+!app/wp-config.php

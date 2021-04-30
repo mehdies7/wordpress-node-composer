@@ -1,0 +1,40 @@
+version: '3'
+ 
+services:
+  db:
+    image: mysql:5.7
+    container_name: '${APP_NAME}-mysql'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - wpsite
+  wp:
+    build:
+      context: ./docker
+    container_name: '${APP_NAME}-app'
+    ports:
+      - 8000:80
+    volumes:
+      - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
+      - ./app:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - wpsite
+    environment:
+      DB_NAME: ${DB_DATABASE}
+      DB_USER: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_HOST: db
+      WP_DEBUG: 1
+networks:
+  wpsite: 
+volumes:
+  db_data: # store database into a volume so that we can pause the containers
