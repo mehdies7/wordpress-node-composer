@@ -7,8 +7,7 @@ Source: https://akrabat.com/developing-wordpress-sites-with-docker/
 ## Directory/file structure:
 
 * `app/` – The WordPress application files are in this directory.
-* `bin/` – Useful command-line scripts
-* `data/` – MySQL dump files go here.
+* `db_data/` – MySQL dump files go here.
 * `docker/` – Files required by the Docker setup are in this directory.
 * `README.md` – Every project needs a README!
 * `docker-compose.yml` – Development orchestration config file.
@@ -66,20 +65,6 @@ To delete the `db_data` volume:
 
 ```bash
 docker-compose down -v
-```
-
-## Exporting the database
-
-To export the database into a MySQL dump file from the db container:
-
-```bash
-bin/export-db
-```
-
-## Restoring a database dump
-
-```bash
-bin/restore-db live-dump.sql
 ```
 
 ## Keep in mind
