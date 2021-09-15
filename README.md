@@ -66,3 +66,8 @@ To delete the `db_data` volume:
 ```bash
 docker-compose down -v
 ```
+## Ports
+Web 8000
+DB 3306
+
+You can change the ports on .env file

@@ -5,7 +5,7 @@ services:
     image: mariadb
     container_name: '${APP_NAME}-db'
     ports:
-      - 3306:3306
+      - ${MARIADB_PORT}:3306
     volumes:
       - ./db_data:/var/lib/mysql
     environment:
@@ -20,7 +20,7 @@ services:
       context: ./docker
     container_name: '${APP_NAME}-app'
     ports:
-      - 8000:80
+      - ${WEB_PORT}:80
     volumes:
       - ./docker/php.conf.ini:/usr/local/etc/php/conf.d/conf.ini
       - ./app:/var/www/html
