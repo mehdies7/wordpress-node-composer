@@ -1,5 +1,5 @@
 .env
 .DS_Store
-app/*
+app
 db_data
 !app/wp-config.php
