@@ -1,4 +1,4 @@
-FROM wordpress:php8.0-apache
+FROM wordpress:php8.2-apache
  
 # Install xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
@@ -15,6 +15,7 @@ RUN curl -s -o /usr/local/bin/wp \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Node
-RUN curl -sL https://deb.nodesource.com/setup_16.x  | bash -
+RUN curl -sL https://deb.nodesource.com/setup_18.x  | bash -
 RUN apt-get -y install nodejs
+RUN npm install -g npm@latest
 # RUN npm install
